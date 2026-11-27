@@ -9,7 +9,7 @@ export function createApp() {
   app.get('/health', (_request, response) => response.json({ ok: true }));
   app.use('/api', apiRouter);
   app.use((error: Error & { status?: number }, _request: express.Request, response: express.Response, _next: express.NextFunction) => {
-    response.status(error.status ?? 500).json({ error: error.message });
+    response.status(error.status ?? 500).json({ error: error.message, message: error.message });
   });
   return app;
 }
